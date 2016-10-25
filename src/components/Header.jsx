@@ -5,13 +5,17 @@ var Header = React.createClass({
   render: function(){
     var containerStyle = {
       height: 40,
-      marginTop: 20,
+      marginTop: 10,
       background: '',
-      textAlign: 'center'
+      textAlign: ''
     };
 
     var infoStyle = {
+      height: 150
+    };
 
+    if(this.props.center){
+      containerStyle.textAlign = "center";
     };
 
     return (

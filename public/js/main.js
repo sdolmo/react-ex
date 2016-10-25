@@ -20765,12 +20765,18 @@ var Header = React.createClass({
   render: function () {
     var containerStyle = {
       height: 40,
-      marginTop: 20,
+      marginTop: 10,
       background: '',
-      textAlign: 'center'
+      textAlign: ''
     };
 
-    var infoStyle = {};
+    var infoStyle = {
+      height: 150
+    };
+
+    if (this.props.center) {
+      containerStyle.textAlign = "center";
+    };
 
     return React.createElement(
       'div',
@@ -20814,8 +20820,125 @@ module.exports = HeaderInfo;
 
 },{"react":171}],174:[function(require,module,exports){
 var React = require('react');
+var SidebarInfo = require('./SidebarInfo.jsx');
+
+var Sidebar = React.createClass({
+  displayName: 'Sidebar',
+
+  render: function () {
+
+    var containerStyle = {};
+
+    var infoStyle = {
+      height: 130
+    };
+
+    return React.createElement(
+      'div',
+      { style: containerStyle },
+      React.createElement(
+        'div',
+        { style: infoStyle, className: 'thumbnail' },
+        React.createElement(
+          'div',
+          { className: 'row' },
+          React.createElement(
+            'div',
+            { className: 'col-xs-6' },
+            React.createElement(SidebarInfo, { heading: this.props.header, num: this.props.value })
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = Sidebar;
+
+},{"./SidebarInfo.jsx":175,"react":171}],175:[function(require,module,exports){
+var React = require('react');
+
+var SidebarInfo = React.createClass({
+  displayName: 'SidebarInfo',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'p',
+        null,
+        this.props.heading
+      ),
+      React.createElement(
+        'h4',
+        null,
+        this.props.num
+      )
+    );
+  }
+});
+
+module.exports = SidebarInfo;
+
+},{"react":171}],176:[function(require,module,exports){
+var React = require('react');
+var SpreadInfo = require('./SpreadInfo.jsx');
+
+var Spread = React.createClass({
+  displayName: 'Spread',
+
+  render: function () {
+    var containerStyle = {
+      height: 300
+    };
+
+    return React.createElement(
+      'div',
+      { style: containerStyle, className: 'thumbnail' },
+      React.createElement(
+        'div',
+        { className: '' },
+        React.createElement(SpreadInfo, { num: this.props.number, comment: this.props.description })
+      )
+    );
+  }
+});
+
+module.exports = Spread;
+
+},{"./SpreadInfo.jsx":177,"react":171}],177:[function(require,module,exports){
+var React = require('react');
+
+var SpreadInfo = React.createClass({
+  displayName: 'SpreadInfo',
+
+  render: function () {
+    return React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'h3',
+        null,
+        this.props.num
+      ),
+      React.createElement(
+        'p',
+        null,
+        this.props.comment
+      )
+    );
+  }
+});
+
+module.exports = SpreadInfo;
+
+},{"react":171}],178:[function(require,module,exports){
+var React = require('react');
 var ReactDOM = require('react-dom');
 var Header = require('./components/Header.jsx');
+var Sidebar = require('./components/Sidebar.jsx');
+var Spread = require('./components/Spread.jsx');
 
 ReactDOM.render(React.createElement(Header, {
   header: '20',
@@ -20828,6 +20951,25 @@ ReactDOM.render(React.createElement(Header, {
   content: 'Yearly Income Goal' }), document.getElementById('header3'));
 ReactDOM.render(React.createElement(Header, {
   header: '65',
+  center: true,
   content: 'Paris' }), document.getElementById('header4'));
+ReactDOM.render(React.createElement(Sidebar, {
+  header: 'New visitors',
+  value: '1.5k' }), document.getElementById('sidebar1'));
+ReactDOM.render(React.createElement(Sidebar, {
+  header: 'Bounce Rate',
+  value: '50%' }), document.getElementById('sidebar2'));
+ReactDOM.render(React.createElement(Sidebar, {
+  header: 'Searchs',
+  value: '28%' }), document.getElementById('sidebar3'));
+ReactDOM.render(React.createElement(Sidebar, {
+  header: 'Traffic',
+  value: '140.5 kb' }), document.getElementById('sidebar4'));
+ReactDOM.render(React.createElement(Spread, {
+  number: '15080',
+  description: 'Shot Views' }), document.getElementById('spread1'));
+ReactDOM.render(React.createElement(Spread, {
+  number: '15080',
+  description: 'Shot Views' }), document.getElementById('spread2'));
 
-},{"./components/Header.jsx":172,"react":171,"react-dom":28}]},{},[174]);
+},{"./components/Header.jsx":172,"./components/Sidebar.jsx":174,"./components/Spread.jsx":176,"react":171,"react-dom":28}]},{},[178]);
